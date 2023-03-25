@@ -16,7 +16,7 @@
  * If you just want a light without a speaker, comment this out to save space.
  * The tone() library used here uses a non trivial amount of bytes.
  */
-#define SPEAKER_PIN PB2
+#define SPEAKER_PIN PB4
 
 /**
  * Optionally connect a potentiometer to this pin if you wish to have a timer.
@@ -25,8 +25,8 @@
  * If you want to leave your options open at compile time, leave this uncommented.
  * However, if you know you will never ever have such a pin, then comment it out to save space.
  */
-#define TIMER_PIN PB3
-#define TIMER_ANALOG_PIN A3
+#define TIMER_PIN PB2
+#define TIMER_ANALOG_PIN A1
 
 #define TONE_FREQ_COOKING 80
 #define TONE_FREQ_BING 2500
