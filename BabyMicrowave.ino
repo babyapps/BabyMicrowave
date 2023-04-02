@@ -115,6 +115,9 @@ void loop() {
       
       #ifdef SPEAKER_PIN
       noTone(SPEAKER_PIN);
+
+      // Also force the pin low to address https://github.com/MCUdude/MicroCore/issues/146.
+      digitalWrite(SPEAKER_PIN, LOW);
       #endif
       
     // Timer ran out, turn the light off and stop the tone.
@@ -127,18 +130,14 @@ void loop() {
         digitalWrite(LIGHT_PIN, LOW);
         
         #ifdef SPEAKER_PIN
-        noTone(SPEAKER_PIN);
         tone(SPEAKER_PIN, TONE_FREQ_BING, BING_DURATION_MS);
         #endif
 
       } else if (IS_OFF() && IS_BINGING() && timeSinceClose > onDuration + BING_DURATION_MS) {
-
         SET_FINISHED_BINGING();
-        
-        #ifdef SPEAKER_PIN
-        noTone(SPEAKER_PIN);
-        #endif
-        
+
+        // No need to explicitly stop tone, it was only queued for a certain period of time
+        // in the original call to tone(...)
       }
     }
 
